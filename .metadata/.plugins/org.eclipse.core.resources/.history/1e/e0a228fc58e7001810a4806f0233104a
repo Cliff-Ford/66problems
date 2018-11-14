@@ -1,0 +1,23 @@
+package test;
+
+
+
+import org.junit.Test;
+
+import problem04.Solution;
+import problem04.TreeNode;
+
+
+
+
+public class Test04 {
+	@Test
+	public void test() {
+		int pre[] = {1};
+		int in[] = {1};
+		Solution solution = new Solution();
+		TreeNode treeNode = solution.reConstructBinaryTree(pre, in);
+		int i = 0;
+		System.out.println(i);
+	}
+}

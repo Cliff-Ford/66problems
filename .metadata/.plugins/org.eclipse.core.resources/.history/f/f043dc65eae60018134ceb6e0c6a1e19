@@ -1,0 +1,26 @@
+package test;
+
+import org.junit.Test;
+
+import problem01.Solution;
+
+public class Test01 {
+	@Test
+	public void test() {
+		//int [][] array = new int[5][5];
+		int [][] array = {
+							{1,2,3,4,5},
+							{6,7,8,9,10},
+							{11,12,13,14,15},
+							{16,17,18,19,20},
+							{21,22,23,24,25}
+						 };
+		int target = 20;
+		Solution solution = new Solution();
+		if(solution.Find(target, array) == true) {
+			System.out.println("true");
+		}else {
+			System.out.println("false");
+		}
+	}
+}

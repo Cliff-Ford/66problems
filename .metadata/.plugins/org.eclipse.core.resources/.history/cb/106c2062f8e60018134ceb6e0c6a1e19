@@ -1,0 +1,25 @@
+package test;
+
+import org.junit.Test;
+
+import problem01.Solution;
+
+public class Test02 {
+	@Test
+	public void test() {
+		StringBuffer stringBuffer = new StringBuffer("a b c d");
+		System.out.println(stringBuffer.length());
+		System.out.println(stringBuffer.capacity());
+		//stringBuffer = stringBuffer.reverse();
+		
+		for(int i = 0; i < stringBuffer.length(); i++) {
+			if(stringBuffer.charAt(i) == " ") {
+				stringBuffer.replace(i, i, "%20");
+			}
+		}
+		System.out.println(stringBuffer.toString());
+		
+		System.out.println(stringBuffer.length());
+		System.out.println(stringBuffer.capacity());
+	}
+}

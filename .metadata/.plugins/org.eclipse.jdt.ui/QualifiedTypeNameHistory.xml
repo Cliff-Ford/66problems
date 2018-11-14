@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="problem01.Solution"/>
+<fullyQualifiedTypeName name="problem02.Solution"/>
+<fullyQualifiedTypeName name="java.lang.StringBuffer"/>
+<fullyQualifiedTypeName name="problem03.ListNode"/>
+<fullyQualifiedTypeName name="problem03.Solution"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.Stack"/>
+<fullyQualifiedTypeName name="problem04.TreeNode"/>
+<fullyQualifiedTypeName name="problem04.Solution"/>
+</qualifiedTypeNameHistroy>
