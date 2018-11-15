@@ -1,0 +1,26 @@
+package test;
+
+
+
+import org.junit.Test;
+
+
+import problem17.Solution;
+import problem17.TreeNode;
+
+
+
+
+public class Test17 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		TreeNode t1 = new TreeNode(1);
+		TreeNode t2 = new TreeNode(2);
+		TreeNode t3 = new TreeNode(3);
+		TreeNode t4 = new TreeNode(4);
+		t1.left = t2;
+		t1.right = t3;
+		t2.right t4;
+	}
+}

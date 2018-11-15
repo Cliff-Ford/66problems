@@ -1,0 +1,19 @@
+package problem15;
+
+import org.junit.Test;
+
+/**
+ * @author Cliff_Ford
+ * 输入一个链表，反转链表后，输出新链表的表头。
+ */
+public class Solution {
+	@Test
+	public void ReverseList(ListNode head) {
+		ListNode p = head;
+		if(p.next != null) {
+			ReverseList(p.next);
+		}
+		System.out.println(p.val);
+    }
+	
+}

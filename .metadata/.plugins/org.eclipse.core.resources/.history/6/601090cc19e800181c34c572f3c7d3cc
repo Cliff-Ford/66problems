@@ -1,0 +1,19 @@
+package test;
+
+
+
+import org.junit.Test;
+
+import problem14.ListNode;
+import problem14.Solution;
+
+
+
+
+public class Test14 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		ListNode listNode1 = new ListNode
+	}
+}

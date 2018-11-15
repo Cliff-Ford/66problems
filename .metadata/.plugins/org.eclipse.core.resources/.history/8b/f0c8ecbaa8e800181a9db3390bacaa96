@@ -1,0 +1,45 @@
+package problem17;
+
+
+/**
+ * @author Cliff_Ford
+ * 输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）
+ */
+public class Solution {
+	public boolean HasSubtree(TreeNode root1,TreeNode root2) {
+        if(root2 == null || root1 == null) {
+        	return false;
+        }
+        TreeNode h = hasNode(root1, root2.val);
+        if(h == null) {
+        	return false;
+        }
+        return isTreeEqual(h, root2);
+    }
+	//先序遍历二叉树查找是否存在目标值
+	public TreeNode hasNode(TreeNode root,int target) {
+		if(root == null) {
+			return null;
+		}
+		TreeNode p = null;
+		if(root.val == target) {
+			p = root;
+			return p;
+		}
+		p = hasNode(root.left, target);
+		if(p == null) {
+			p = hasNode(root.right,target);
+		}
+		return p;
+	}
+	//判断两棵树是否等价
+	public boolean isTreeEqual(TreeNode tree1, TreeNode tree2) {
+		if(tree1 == null && tree2 == null) {
+			return true;
+		}
+		if(tree1.val == tree2.val) {
+			return isTreeEqual(tree1.left, tree2.left) && isTreeEqual(tree1.right, tree2.right);
+		}
+		return false;
+	}
+}

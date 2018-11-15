@@ -6,9 +6,19 @@
 <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
 <fullyQualifiedTypeName name="problem03.ListNode"/>
 <fullyQualifiedTypeName name="problem03.Solution"/>
-<fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.util.Stack"/>
 <fullyQualifiedTypeName name="problem04.TreeNode"/>
 <fullyQualifiedTypeName name="problem04.Solution"/>
+<fullyQualifiedTypeName name="java.util.Stack"/>
+<fullyQualifiedTypeName name="problem05.Solution"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="sun.misc.Queue"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.util.Queue"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="problem14.ListNode"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="problem15.ListNode"/>
+<fullyQualifiedTypeName name="problem16.ListNode"/>
+<fullyQualifiedTypeName name="problem17.TreeNode"/>
 </qualifiedTypeNameHistroy>

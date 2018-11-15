@@ -1,0 +1,23 @@
+package problem15;
+
+
+/**
+ * @author Cliff_Ford
+ * 输入一个链表，反转链表后，输出新链表的表头。
+ */
+public class Solution {
+	public ListNode ReverseList(ListNode head) {
+		ListNode p = head;
+		if(head.next!=null) {
+			ListNode t = ReverseList(head.next);
+			p.next = t;
+		}
+		return p;
+    }
+	public void Reverse(ListNode head) {
+		if(head.next != null) {
+			Reverse(head.next);
+		}
+		System.out.println(head.val);
+	}
+}
