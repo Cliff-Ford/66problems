@@ -1,0 +1,15 @@
+package test;
+
+import org.junit.Test;
+
+
+import problem24.Solution;
+
+public class Test24 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		
+	}
+	
+}

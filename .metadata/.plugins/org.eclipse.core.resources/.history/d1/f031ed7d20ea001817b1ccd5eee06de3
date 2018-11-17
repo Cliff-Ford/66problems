@@ -1,0 +1,25 @@
+package test;
+
+
+import java.util.ArrayList;
+
+import org.junit.Test;
+
+
+import problem27.Solution;
+
+
+
+public class Test28 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		ArrayList<String> arrayList = solution.Permutation("abc");
+		int i = 0;
+		for(String t : arrayList) {
+			System.out.println(t);
+			i++;
+		}
+		System.out.println(i);
+	}
+}

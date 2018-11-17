@@ -1,0 +1,25 @@
+package test;
+
+
+
+
+import org.junit.Test;
+
+
+import problem30.Solution;
+
+
+
+public class Test30 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		int a[] = {6,-3,-2,7,-15,1,2,2};
+		System.out.println(solution.FindGreatestSumOfSubArray(a));
+		int b[] = {-3,-2};
+		System.out.println(solution.FindGreatestSumOfSubArray(a));
+		int a[] = {6,7,-15,1,2,2};
+		System.out.println(solution.FindGreatestSumOfSubArray(a));
+	}
+	
+}

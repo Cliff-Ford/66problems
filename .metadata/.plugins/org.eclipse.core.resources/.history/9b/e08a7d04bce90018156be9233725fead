@@ -1,0 +1,22 @@
+package test;
+
+
+import org.junit.Test;
+
+
+import problem26.Solution;
+import problem26.TreeNode;
+
+
+public class Test26 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		TreeNode t1 = new TreeNode(2);
+		TreeNode t2 = new TreeNode(1);
+		t1.left = t2;
+		TreeNode t = solution.Convert(t1);
+		while(t.)
+	}
+	
+}

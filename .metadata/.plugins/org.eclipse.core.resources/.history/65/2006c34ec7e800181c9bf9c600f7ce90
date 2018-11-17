@@ -1,0 +1,22 @@
+package test;
+
+
+
+import java.util.ArrayList;
+
+import org.junit.Test;
+
+
+import problem19.Solution;
+
+
+
+
+
+public class Test20 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		
+	}
+}

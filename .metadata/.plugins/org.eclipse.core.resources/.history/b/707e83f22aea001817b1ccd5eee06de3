@@ -1,0 +1,72 @@
+package problem28;
+
+
+
+
+
+/**
+ * @author Cliff_Ford
+ * 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。
+ * 例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。
+ * 由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。
+ */
+public class Solution {
+	//估计会超时
+	public int MoreThanHalfNum_Solution(int [] array) {
+		int result = 0;
+        if(array.length == 0) {
+        	return result;
+        }
+        int len = array.length;
+        int half = len / 2;
+        
+        for(int i = 0; i < len; i++) {
+        	int count = 0;
+        	result = array[i];
+        	for(int j = i; j < len; j++) {
+        		if(array[j] == result) {
+        			count++;
+        			if(count > half) {
+        				return result;
+        			}
+        		}
+        	}
+        }
+        return result;
+    }
+	
+	//输入一个数组，将该数组排好序
+	public void quick_sort(int [] array,int start,int end) {
+		
+		int low = start;
+		int high = end;
+		int key = array[start];
+		while(low < high) {
+			while(array[high]>=key) {
+				high--;
+			}
+			if(low<high) {
+				int t = array[high];
+				array[high] = array[low];
+				array[low] = t;
+				low++;
+			}
+			while(array[low]<=key) {
+				low++;
+			}
+			if(low<high) {
+				int t = array[high];
+				array[high] = array[low];
+				array[low] = t;
+				high--;
+			}
+		}
+		if(low>start) {
+			quick_sort(array, start, low-1);
+		}
+		if(high<end) {
+			quick_sort(array, high+1, end);
+		}
+	}
+	
+}

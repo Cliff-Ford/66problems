@@ -1,0 +1,35 @@
+package test;
+
+
+import org.junit.Test;
+
+import problem25.RandomListNode;
+import problem25.Solution;
+
+
+public class Test25 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		RandomListNode r1 = new RandomListNode(1);
+		RandomListNode r2 = new RandomListNode(2);
+		/*RandomListNode r3 = new RandomListNode(3);
+		RandomListNode r4 = new RandomListNode(4);*/
+		r1.next = r2;
+		r1.random = r2;
+		r2.next = null;
+		r2.random = r2;
+		/*r2.next = r3;
+		r2.random = r1;
+		r3.next = r4;
+		r3.random = r4;
+		r4.next = null;
+		r4.random = r3;*/
+		RandomListNode r = solution.Clone(r1);
+		System.out.println(r.label);//1
+		System.out.println(r.next.label);//2
+		System.out.println(r.random.label);//2
+		System.out.println(r.next.random.label);//1
+	}
+	
+}

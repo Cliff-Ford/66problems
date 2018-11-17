@@ -1,0 +1,21 @@
+package test;
+
+
+import java.util.ArrayList;
+
+import org.junit.Test;
+
+
+import problem28.Solution;
+
+
+
+public class Test28 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		int array[] = {2,4,3,1};
+		solution.quick_sort(array, 0, array.length-1);
+		System.out.println(array);
+	}
+}
