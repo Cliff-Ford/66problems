@@ -1,0 +1,24 @@
+package test;
+
+
+
+
+import org.junit.Test;
+
+
+import problem33.Solution;
+
+
+
+public class Test33 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		//System.out.println(solution.GetUglyNumber_Solution(0));
+		//System.out.println(solution.GetUglyNumber_Solution(1));
+		System.out.println(solution.GetUglyNumber_Solution(2));
+		System.out.println(solution.GetUglyNumber_Solution(7));
+		System.out.println(solution.GetUglyNumber_Solution(9));
+	}
+	
+}

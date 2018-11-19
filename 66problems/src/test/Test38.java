@@ -1,0 +1,29 @@
+package test;
+
+
+
+
+import org.junit.Test;
+
+
+import problem38.Solution;
+import problem38.TreeNode;
+
+
+
+public class Test38 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		TreeNode t1 = new TreeNode(1);
+		TreeNode t2 = new TreeNode(2);
+		TreeNode t3 = new TreeNode(3);
+		t1.left = t2;
+		t1.right = t3;
+		System.out.println(solution.TreeDepth(t1));
+		TreeNode t4 = new TreeNode(4);
+		t3.left = t4;
+		System.out.println(solution.TreeDepth(t1));
+	}
+	
+}

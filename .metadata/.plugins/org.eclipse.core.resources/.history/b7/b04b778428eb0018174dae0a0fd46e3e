@@ -1,0 +1,19 @@
+package problem36;
+
+
+
+
+/**
+ * @author Cliff_Ford
+ * 输入两个链表，找出它们的第一个公共结点。
+ *  
+ *  
+ *  公共节点是指两个链表的交点，不是第一个值相等的点
+ */
+public class Solution {
+	
+	public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {
+		 
+    }
+}
+
