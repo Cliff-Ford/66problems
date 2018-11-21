@@ -1,0 +1,27 @@
+package test;
+
+
+
+
+
+
+
+import org.junit.Test;
+
+
+import problem62.Solution;
+import problem62.TreeNode;
+
+
+
+
+public class Test62 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		
+	}
+	
+	
+	
+}

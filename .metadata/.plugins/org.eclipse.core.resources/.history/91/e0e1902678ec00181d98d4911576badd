@@ -1,0 +1,26 @@
+package test;
+
+
+
+
+
+
+import org.junit.Test;
+
+
+import problem49.Solution;
+
+
+
+
+public class Test49 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		System.out.println(solution.StrToInt(""));
+		System.out.println(solution.StrToInt("0"));
+		System.out.println(solution.StrToInt("1"));
+	}
+	
+	
+}

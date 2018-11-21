@@ -1,0 +1,29 @@
+package test;
+
+
+
+
+
+
+import org.junit.Test;
+
+
+import problem50.Solution;
+
+
+
+
+public class Test50 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		int a1[] = {2,3,1,0,2,5,3};
+		int a2[] = {};
+		int duplication[] = new int[1];
+		
+		System.out.println(solution.duplicate(a1, a1.length, duplication) + "  " + duplication[0]);
+		System.out.println(solution.duplicate(a2, a2.length, duplication) + "  " + duplication[0]);
+	}
+	
+	
+}

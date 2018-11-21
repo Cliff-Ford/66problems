@@ -1,0 +1,26 @@
+package test;
+
+
+
+
+
+
+import org.junit.Test;
+
+
+import problem47.Solution;
+
+
+
+
+public class Test47 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		System.out.println(solution.Sum_Solution(1));
+		System.out.println(solution.Sum_Solution(10));
+		System.out.println(solution.Sum_Solution(100));
+	}
+	
+	
+}

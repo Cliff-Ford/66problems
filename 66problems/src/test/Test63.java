@@ -1,0 +1,36 @@
+package test;
+
+
+
+
+
+
+
+import org.junit.Test;
+
+
+import problem63.Solution;
+
+
+
+
+
+public class Test63 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		solution.Insert(1);
+		System.out.println(solution.GetMedian());
+		solution.Insert(2);
+		System.out.println(solution.GetMedian());
+		solution.Insert(3);
+		System.out.println(solution.GetMedian());
+		solution.Insert(5);
+		System.out.println(solution.GetMedian());
+		solution.Insert(7);
+		System.out.println(solution.GetMedian());
+	}
+	
+	
+	
+}

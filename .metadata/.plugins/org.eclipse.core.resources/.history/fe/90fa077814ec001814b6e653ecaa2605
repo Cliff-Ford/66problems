@@ -1,0 +1,24 @@
+package test;
+
+
+
+
+
+
+import org.junit.Test;
+
+
+import problem46.Solution;
+
+
+
+
+public class Test46 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		System.out.println(2%1);
+	}
+	
+	
+}

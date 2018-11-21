@@ -1,0 +1,41 @@
+package test;
+
+
+
+
+
+
+import org.junit.Test;
+
+
+import problem49.Solution;
+
+
+
+
+public class Test49 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		//System.out.println(solution.StrToInt(""));
+		//System.out.println(solution.StrToInt("0"));
+		//System.out.println(solution.StrToInt("1"));
+		//System.out.println(solution.StrToInt("12423"));
+		//System.out.println(solution.StrToInt("012423"));
+		//System.out.println(solution.StrToInt("12423.1"));//0
+		//System.out.println(solution.StrToInt("12423.0"));//123423
+		//System.out.println(solution.StrToInt("12423.000000"));//123423
+		//System.out.println(solution.StrToInt("12423.000001"));//0
+		//System.out.println(solution.StrToInt("12s23.0"));//0
+		//System.out.println(solution.StrToInt("+12423.0"));//123423
+		//System.out.println(solution.StrToInt("+12423.00000"));//123423
+		//System.out.println(solution.StrToInt("+12423.0001"));//0
+		//System.out.println(solution.StrToInt("-12423.0"));//123423
+		//System.out.println(solution.StrToInt("-"));//0
+		//System.out.println(solution.StrToInt("+"));//0
+		System.out.println(solution.StrToInt("-1"));//0
+		System.out.println(solution.StrToInt("+2.0"));//0
+	}
+	
+	
+}

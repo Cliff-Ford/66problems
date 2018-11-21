@@ -1,0 +1,22 @@
+package problem60;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+/**
+ * @author Cliff_Ford
+ * 从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。
+ */
+public class Solution {
+	public ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
+	    ArrayList<Integer> floor = new ArrayList<>();
+	    ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+	    if(pRoot==null) {
+	    	return result;
+	    }
+	    Queue<TreeNode> queue = new LinkedList<>();
+	    
+    }
+}
+
+ 

@@ -1,0 +1,28 @@
+package test;
+
+
+
+
+
+
+import org.junit.Test;
+
+
+import problem46.Solution;
+
+
+
+
+public class Test46 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		
+		solution.LastRemaining_Solution(3, 3);
+		solution.LastRemaining_Solution(5, 6);
+		solution.LastRemaining_Solution(5, 1);
+		solution.LastRemaining_Solution(6, 2);
+	}
+	
+	
+}

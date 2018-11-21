@@ -1,0 +1,51 @@
+package problem61;
+
+
+
+/**
+ * @author Cliff_Ford
+ * 请实现两个函数，分别用来序列化和反序列化二叉树
+ */
+public class Solution {
+	//先序遍历序列化
+	public String Serialize(TreeNode root) {
+		if(root==null) {
+			return "#,";
+		}
+		String s = "" + root.val + ",";
+		if(root.left==null) {
+			s = s + "#,";
+		}else {
+			String l = Serialize(root.left);
+			s = s + l;
+		}
+		if(root.right==null) {
+			s = s + "#,";
+		}else {
+			String r = Serialize(root.right);
+			s = s + r;
+		}
+		return s;
+	}
+	public TreeNode Deserialize(String str) {
+		TreeNode root = null;
+		if(str.length()==0) {
+			return root;
+		}
+		String string[] = str.split(",");
+		root = Deserialize(string,0);
+		
+		return root;
+	}
+	public TreeNode Deserialize(String string[],int index) {
+		TreeNode r = null;
+		if(string[index]!="#") {
+			r.val = Integer.valueOf(string[index++]);
+			r.left = Deserialize(string,index);
+			r.right = Deserialize(string, index);
+		}
+		return r;
+	}
+}
+
+ 
