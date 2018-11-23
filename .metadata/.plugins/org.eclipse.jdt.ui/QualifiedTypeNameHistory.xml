@@ -7,7 +7,6 @@
 <fullyQualifiedTypeName name="problem04.TreeNode"/>
 <fullyQualifiedTypeName name="problem04.Solution"/>
 <fullyQualifiedTypeName name="problem05.Solution"/>
-<fullyQualifiedTypeName name="java.lang.Math"/>
 <fullyQualifiedTypeName name="sun.misc.Queue"/>
 <fullyQualifiedTypeName name="problem14.ListNode"/>
 <fullyQualifiedTypeName name="org.junit.Test"/>
@@ -43,12 +42,14 @@
 <fullyQualifiedTypeName name="com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="problem59.TreeNode"/>
-<fullyQualifiedTypeName name="java.util.Queue"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="problem61.TreeNode"/>
 <fullyQualifiedTypeName name="problem62.TreeNode"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="java.util.Queue"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="problem57.TreeLinkNode"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.lang.Double"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
 </qualifiedTypeNameHistroy>

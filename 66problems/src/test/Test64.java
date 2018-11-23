@@ -1,0 +1,32 @@
+package test;
+
+
+
+
+
+
+
+import org.junit.Test;
+
+
+import problem64.Solution;
+
+
+
+
+
+public class Test64 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		int array[] = {2,3,4,2,6,2,5,1};
+		System.out.println(solution.maxInWindows(null, 9));
+		System.out.println(solution.maxInWindows(new int[0], 9));
+		System.out.println(solution.maxInWindows(array, -1));
+		System.out.println(solution.maxInWindows(array, 9));
+		System.out.println(solution.maxInWindows(array, 3));
+	}
+	
+	
+	
+}

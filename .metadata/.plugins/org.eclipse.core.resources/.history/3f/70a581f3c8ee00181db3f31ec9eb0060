@@ -1,0 +1,26 @@
+package test;
+
+
+
+
+
+
+import org.junit.Test;
+
+
+import problem53.Solution;
+
+
+
+
+public class Test53 {
+	@Test
+	public void test() {
+		Solution solution = new Solution();
+		//System.out.println(solution.isNumeric("+100".toCharArray()));
+		//System.out.println(solution.isNumeric("+100.234".toCharArray()));
+		System.out.println(solution.isNumeric("+100.234e-2".toCharArray()));
+	}
+	
+	
+}

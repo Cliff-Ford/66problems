@@ -17,7 +17,7 @@ public class Test48 {
 	@Test
 	public void test() {
 		Solution solution = new Solution();
-		
+		System.out.println(solution.Add(1, 1));
 		
 	}
 	

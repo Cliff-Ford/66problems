@@ -13,59 +13,54 @@ public class Solution {
 		if(str.length==0 && pattern.length==0) {
 			return true;
 		}
-        if(str==null || pattern==null || str.length==0 || pattern.length==0) {
+        if(str==null || pattern==null || pattern.length==0) {
         	return false;
         }
         int len = str.length;
-        int j = 0;
-        int i = 0;
-        int patternLen = pattern.length;
-        for(; i < len && j < patternLen; i++) {
-        	if(str[i]==pattern[j] || pattern[j]=='.') {
-        		j++;
-        		if(j<patternLen && pattern[j]=='*') {
-        			char c = str[i];
-        			if(c!='.') {
-        				
-        				
-						while(i+1<len && c==str[i+1]) {
-	        				i++;
-	        			}
-    					
-        				
-	        			j++;
-        			}else {
-        				//  以 .*  的情况未处理
-        				
-        			}
-        			
-        		}
-        	}else if(j+1<patternLen && pattern[j+1]=='*') {
-    			//即使第一个匹配不上，i=-1,因为当前循环体结束时会+1,变成0,不会越界
-        		i--;
-        		if(j+2<patternLen) {
-        			j = j + 2;
-        		}else {
-        			return false;
-        		}    			
-    		}else {
-    			return false;
-    		}
-        }
-        //去掉模式末尾多余的 a*b*c*
-        for(; j < patternLen; j++) {
-        	if(j+1<patternLen && pattern[j+1]=='*') {
-        		j = j + 1;
-        	}else {
-        		return false;
-        	}
-        }
+		return false;
         
-        if(i==len && j==patternLen) {
-        	return true;
-        }
-        return false;
     }
+	
+	
+	/*
+	  当模式中的第二个字符不是“*”时：
+	 1、如果字符串第一个字符和模式中的第一个字符相匹配，那么字符串和模式都后移一个字符，然后匹配剩余的。
+	 2、如果 字符串第一个字符和模式中的第一个字符相不匹配，直接返回false。
+
+	 而当模式中的第二个字符是“*”时：
+	 如果字符串第一个字符跟模式第一个字符不匹配，则模式后移2个字符，继续匹配。如果字符串第一个字符跟模式第一个字符匹配，可以有3种匹配方式：
+	 1、模式后移2字符，相当于x*被忽略；    ab    a*ab
+	 2、字符串后移1字符，模式后移2字符；  ab    a*b
+	 3、字符串后移1字符，模式不变，即继续匹配字符下一位，因为*可以匹配多位；  aab  a*b
+	 
+	*/
+	
+	public boolean matchCore(char[] str, int strIndex, char[] pattern, int patternIndex) {
+	    //有效性检验：str到尾，pattern到尾，匹配成功
+	    if (strIndex == str.length && patternIndex == pattern.length) {
+	        return true;
+	    }
+	    //pattern先到尾，匹配失败
+	    if (strIndex != str.length && patternIndex == pattern.length) {
+	        return false;
+	    }
+	    //模式第2个是*，且字符串第1个跟模式第1个匹配,分3种匹配模式；如不匹配，模式后移2位
+	    if (patternIndex + 1 < pattern.length && pattern[patternIndex + 1] == '*') {
+	        if ((strIndex != str.length && pattern[patternIndex] == str[strIndex]) || (pattern[patternIndex] == '.' && strIndex != str.length)) {
+	            return matchCore(str, strIndex, pattern, patternIndex + 2)//模式后移2，视为x*匹配0个字符
+	                    || matchCore(str, strIndex + 1, pattern, patternIndex + 2)//视为模式匹配1个字符
+	                    || matchCore(str, strIndex + 1, pattern, patternIndex);//*匹配1个，再匹配str中的下一个
+	        } else {
+	            return matchCore(str, strIndex, pattern, patternIndex + 2);
+	        }
+	    }
+	    //模式第2个不是*，且字符串第1个跟模式第1个匹配，则都后移1位，否则直接返回false
+	    if ((strIndex != str.length && pattern[patternIndex] == str[strIndex]) || (pattern[patternIndex] == '.' && strIndex != str.length)) {
+	        return matchCore(str, strIndex + 1, pattern, patternIndex + 1);
+	    }
+	    return false;
+	}
+	
 
 }
 
