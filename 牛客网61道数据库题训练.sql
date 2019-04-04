@@ -322,24 +322,242 @@ AND f.film_id = fc.film_id
 AND c.category_id = fc.category_id
 AND c.category_id=cc.category_id
 
+29.使用join查询方式找出没有分类的电影id以及名称
+select f.film_id, f.film_title from film left join film_category fc on f.film_id = fc.film_id where fc.film_id is null;
 
+30.使用子查询的方式找出属于Action分类的所有电影对应的title,description 
+select title, description from film f where f.film_id in (select fc.film_id from film_category fc where fc.category_id = (select category_id from category where name = 'Action'))
 
+31.获取select * from employees对应的执行计划
+explain select * from employees;
 
+32.将employees表的所有员工的last_name和first_name拼接起来作为Name，中间以一个空格区分(sqlite只支持||连接方式)
+select last_name||" "||first_name as name from employees;
+select concat(last_name, ' ', first_name) as name from employees;(mysql,sqlserver,oracle)
 
+33.创建一个actor表，包含如下列信息
+sqlite没有getdate()函数
+create table actor(
+	actor_id smallint(5) not null,
+	first_name varchar(45) not null,
+	last_name varchar(45) not null,
+	last_update timestamp not null default (datetime('now','localtime')),          
+	primary key(actor_id)
+);
+mysql有
+create table actor(
+	actor_id smallint(5) not null,
+	first_name varchar(45) not null,
+	last_name varchar(45) not null,
+	last_update timestamp not null default getdate(),          
+	primary key(actor_id)
+);
 
+34.对于表actor批量插入如下数据
+insert into actor(actor_id, first_name, last_name, last_update) 
+values(1, 'PENELOPE', 'GUINESS', '2006-02-15 12:34:33'),(2, 'NICK', 'WAHLBERG', '2006-02-15 12:34:33')
+另一种方法
+insert into actor(actor_id, first_name, last_name, last_update) 
+select 1, 'PENELOPE', 'GUINESS', '2006-02-15 12:34:33'
+union select 2, 'NICK', 'WAHLBERG', '2006-02-15 12:34:33'
 
+35.对于表actor批量插入如下数据,如果数据已经存在，请忽略，不使用replace操作
+insert or ignore into actor(actor_id, first_name, last_name, last_update) values(3, 'ED', 'CHASE', '2006-02-15 12:34:33')
 
+36.创建一个actor_name表，将actor表中的所有first_name以及last_name导入该表。 actor_name表结构如下：
+create table actor_name(
+	first_name varchar(45) not null,
+	last_name varchar(45) not null
+);
+insert into actor_name(first_name, last_name) select first_name, last_name from actor;
 
+37.针对如下表actor结构对first_name创建唯一索引uniq_idx_firstname，对last_name创建普通索引idx_lastname
+create unique index uniq_idx_firstname on actor(first_name);
+alter table actor add index idx_lastname(last_name);(sqlit不支持这种方式)
+show index from actor;
 
+38.针对actor表创建视图actor_name_view，只包含first_name以及last_name两列，并对这两列重新命名，first_name为first_name_v，last_name修改为last_name_v：
+create view actor_name_view as
+select first_name as first_name_v, last_name as last_name_v
+from actor;
 
+39.针对salaries表emp_no字段创建索引idx_emp_no，查询emp_no为10005, 使用强制索引。
+create index idx_emp_no on salaries(emp_no);
+select * from salaries force index(idx_emp_no) where emp_no = '10005';(sqlite不支持)
 
+select * from salaries
+indexed by idx_emp_no
+where emp_no = '10005'
 
+40.针对actor表，现在在last_update后面新增加一列名字为create_date, 类型为datetime, NOT NULL，默认值为'0000-00-00 00:00:00'
+alter table actor add column create_date datetime not null default '0000 00:00:00' after last_update;(sqlite不支持after,去掉即可)
 
+CREATE TABLE employees_test(
+ID INT PRIMARY KEY NOT NULL,
+NAME TEXT NOT NULL,
+AGE INT NOT NULL,
+ADDRESS CHAR(50),
+SALARY REAL
+);
+CREATE TABLE audit(
+EMP_no INT NOT NULL,
+NAME TEXT NOT NULL
+);
+41.构造一个触发器audit_log，在向employees_test表中插入一条数据的时候，触发插入相关的数据到audit中。
+create trigger audit_log
+after insert on employees_test
+begin
+	insert into audit(emp_no, name) values(new.id, new.name);
+end;
 
+mysql需要这样写
+delimiter $
+create trigger audit_log
+after insert on employees_test 
+for each row
+begin
+	insert into audit(emp_no, name)
+	values(new.id, new.name);
+end $ 
+delimiter ;
 
+CREATE TABLE IF NOT EXISTS titles_test (
+id int(11) not null primary key,
+emp_no int(11) NOT NULL,
+title varchar(50) NOT NULL,
+from_date date NOT NULL,
+to_date date DEFAULT NULL);
+insert into titles_test values ('1', '10001', 'Senior Engineer', '1986-06-26', '9999-01-01'),
+('2', '10002', 'Staff', '1996-08-03', '9999-01-01'),
+('3', '10003', 'Senior Engineer', '1995-12-03', '9999-01-01'),
+('4', '10004', 'Senior Engineer', '1995-12-03', '9999-01-01'),
+('5', '10001', 'Senior Engineer', '1986-06-26', '9999-01-01'),
+('6', '10002', 'Staff', '1996-08-03', '9999-01-01'),
+('7', '10003', 'Senior Engineer', '1995-12-03', '9999-01-01');
+42.针对titles_test表删除emp_no重复的记录，只保留最小的id对应的记录。
+sqlite支持该方式，但mysql不支持
+delete * from t1 where t1.id in (
+	select t2.id
+	from titles_test t1 join titles_test t2
+	on t1.emp_no = t2.emp_no and t1.id < t2.id
+);
+mysql该这样写
+set SQL_SAFE_UPDATES = 0;
+delete from titles_test where id in(
+	select id from (
+		select t2.id
+		from titles_test t1 join titles_test t2
+		on t1.emp_no = t2.emp_no and t1.id < t2.id
+    ) a
+);
+set SQL_SAFE_UPDATES = 1;
 
+43.将表titles_test所有to_date为9999-01-01的全部更新为NULL,且 from_date更新为2001-01-01。(题目有坑，表设计not null，又更新为null)
+update titles_test set to_date = null, from_date = '2001-01-01' where to_date = '9999-01-01'
 
+44.将titles_test中id=5以及emp_no=10001的行数据替换成id=5以及emp_no=10005,其他数据保持不变，使用replace实现。
+update titles_test set emp_no = replace(emp_no, '10001', '10005') where id = 5 and emp_no = '10001';
 
+45.将titles_test表名修改为titles_2017。
+sqlite不支持rename table titles_test to titles_2017;
+alter table titles_test rename to titles_2017;
 
+46.在audit表上创建外键约束，其emp_no对应employees_test表的主键id。(oj太死板，必须用这一段代码)
+drop table audit; 
+CREATE TABLE audit(
+    EMP_no INT NOT NULL,
+    create_date datetime NOT NULL,
+    FOREIGN KEY(EMP_no) REFERENCES employees_test(ID));
+mysql该这样写
+alter table audit add foreign key(emp_no) references employees_test(id);
 
+47.存在如下的视图：
+create view emp_v as select * from employees where emp_no >10005;
+如何获取emp_v和employees有相同的数据？
+select * from emp_v;
 
+create table emp_bonus(
+emp_no int not null,
+recevied datetime not null,
+btype smallint not null);
+
+48.将所有获取奖金的员工当前的薪水增加10%。
+UPDATE salaries SET salary = salary * 1.1 WHERE emp_no IN
+(SELECT s.emp_no FROM salaries AS s INNER JOIN emp_bonus AS eb 
+ON s.emp_no = eb.emp_no AND s.to_date = '9999-01-01')
+mysql版
+update salaries 
+join (select e.emp_no from emp_bonus e join salaries s on e.emp_no = s.emp_no and s.to_date = '9999-01-01') a
+on salaries.emp_no = a.emp_no and to_date = '9999-01-01'
+set salary = salary * 1.1;
+
+49针对库中的所有表生成select count(*)对应的SQL语句
+sqlite版
+select "select count(*) from "||name||";" as cnts from sqlite_master where type = 'table';
+mysql版
+select concat('select count(*) from ', table_name, ';') as cnts 
+from (select table_name from information_schema.tables where table_schema = 'niuke_sql_test') a;
+
+50.将employees表中的所有员工的last_name和first_name通过(')连接起来。'
+select last_name||"'"||first_name as name from employees;
+
+51.查找字符串'10,A,B' 中逗号','出现的次数cnt。
+select length("10,A,B")-length(replace("10,A,B",",","")) as cnt;
+
+52.获取Employees中的first_name，查询按照first_name最后两个字母，按照升序进行排列
+mysql版
+select first_name from employees order by right(first_name, 2);
+sqlite版
+select first_name from employees order by substr(first_name,length(first_name)-1)
+
+53.按照dept_no进行汇总，属于同一个部门的emp_no按照逗号进行连接，结果给出dept_no以及连接出的结果employees
+select dept_no, group_concat(emp_no) from dept_emp
+group by dept_no;
+
+54.查找排除当前最大、最小salary之后的员工的平均工资avg_salary。(题目有误)
+原题的解应该如下，在挑选max和min的时候应该加上限制
+select avg(salary) avg_salary from salaries 
+where to_date = '9999-01-01' 
+and salary < (select max(salary) from salaries where to_date = '9999-01-01') 
+and salary > (select min(salary) from salaries where to_date = '9999-01-01');
+但oj处ac代码是
+select avg(salary) avg_salary from salaries 
+where to_date = '9999-01-01' 
+and salary < (select max(salary) from salaries) 
+and salary > (select min(salary) from salaries);
+
+55.分页查询employees表，每5行一页，返回第2页的数据
+select * from employees limit 5,5;
+
+56.获取所有员工的emp_no、部门编号dept_no以及对应的bonus类型btype和recevied，没有分配具体的员工不显示
+select e.emp_no, de.dept_no, eb.btype, eb.recevied
+from employees e inner join dept_emp de on e.emp_no = de.emp_no left join emp_bonus eb on e.emp_no = eb.emp_no
+
+57.使用含有关键字exists查找未分配具体部门的员工的所有信息。
+select * from employees where not exists(select dept_emp.emp_no from dept_emp where dept_emp.emp_no = employees.emp_no);
+
+58.存在如下的视图：
+create view emp_v as select * from employees where emp_no >10005;获取employees中的行数据，且这些行也存在于emp_v中。注意不能使用intersect关键字。
+select * from emp_v;
+
+59.获取有奖金的员工相关信息。给出emp_no、first_name、last_name、奖金类型btype、对应的当前薪水情况salary以及奖金金额bonus。 bonus类型btype为1其奖金为薪水salary的10%，btype为2其奖金为薪水的20%，其他类型均为薪水的30%。 当前薪水表示to_date='9999-01-01'
+select eb.emp_no, e.first_name, e.last_name, eb.btype, s.salary, (
+	case eb.btype
+    when 1 then s.salary*0.1
+    when 2 then s.salary*0.2
+    else s.salary*0.3 end
+) as bonus
+from emp_bonus eb join employees e on eb.emp_no = e.emp_no
+join salaries s on s.to_date = '9999-01-01' and eb.emp_no = s.emp_no;
+
+60.按照salary的累计和running_total，其中running_total为前两个员工的salary累计和，其他以此类推。 具体结果如下Demo展示。。
+select emp_no, salary, (
+	select sum(salary) from salaries s2 where to_date = '9999-01-01' and s1.emp_no >= s2.emp_no
+) as running_total from salaries s1
+where to_date = '9999-01-01'
+order by emp_no;
+
+61.对于employees表中，给出奇数行的first_name
+select e1.first_name
+from employees e1
+where (select count(*) from employees e2 where e1.first_name <= e2.first_name)%2=1;
